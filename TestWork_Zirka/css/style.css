@@ -1,4 +1,5 @@
 :root {
+  --bgColor: #F1EDE0;
   --prodCol: 4;
   --link-color: #333;
   --link-color-hover: #ff9e2c;
@@ -15,6 +16,7 @@ body {
   min-height: 100%;
   font-size: 16px;
   font-family: "Roboto", sans-serif;
+  background-color: var(--bgColor);
 }
 
 .main_title {
@@ -26,18 +28,20 @@ body {
 
 .bl_product {
   height: 100vh;
-  width: 1200px;
+  max-width: 1200px;
   margin: 10px auto;
   display: grid;
   grid-template-columns: repeat(var(--prodCol), 1fr);
   grid-template-rows: repeat(var(--prodCol), 1fr);
   grid-gap: 15px;
+  padding: 0;
   list-style-type: none;
 }
 
 .bl_product__item {
   padding: 10px;
   border: 1px solid #000;
+  background-color: #fff;
 }
 
 .bl_product__img {
@@ -52,19 +56,18 @@ body {
   transition: .1s ease-out all;
 }
 
-.bl_product__img:hover {
-  -webkit-transform: scale(1.2);
-      -ms-transform: scale(1.2);
-          transform: scale(1.2);
-  transition: .15s ease-in all;
-}
-
 .bl_product__name {
-  margin-top: 12px;
+  position: relative;
+  display: block;
+  margin: 12px auto 5px;
+  text-align: center;
   color: var(--link-color);
   font-size: 18px;
-  text-align: center;
   font-weight: 600;
+  max-width: 234px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bl_product__name:hover, .bl_product__name:focus {
@@ -95,16 +98,31 @@ body {
 
 .icon_star {
   position: relative;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #000;
-  margin: 0 5px;
+  width: 36px;
+  height: 36px;
+  margin: 5px 2px;
 }
 
 .icon_star:after {
   content: "";
-  font-size: 24px;
-  color: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 42px;
+  font-weight: 600;
+  color: #f8d30b;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.icon_star__full:after {
+  content: "\2605";
+}
+
+.icon_star__half:after {
+  content: "\2606";
 }
 
 .bl_price {
@@ -121,4 +139,31 @@ body {
 .bl_description {
   font-size: 14px;
   color: var(--color-desc);
+}
+
+@media only screen and (min-width: 1200px) {
+  .bl_product__img:hover {
+    -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+            transform: scale(1.2);
+    transition: .15s ease-in all;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  :root {
+    --prodCol: 3;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  :root {
+    --prodCol: 2;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  :root {
+    --prodCol: 1;
+  }
 }
